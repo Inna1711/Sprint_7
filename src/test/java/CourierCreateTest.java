@@ -54,12 +54,12 @@ public class CourierCreateTest
         var courierId = getCourierId(new models.CourierLogin.Input(login, password));
         var deleteStatus = deleteCourier(courierId);
         assertTrue("Courier delete failed ", deleteStatus.isOk());
+        assertNull("Message should be null", deleteStatus.getMessage());
     }
 
     @Test
     @Description("Successful create courier test")
     public void createCourierTest(){
-        cleanupCourier(Constants.COURIER_LOGIN, Constants.COURIER_PASSWORD);
         Input courierCreateData = new Input(Constants.COURIER_LOGIN, Constants.COURIER_PASSWORD, Constants.COURIER_NAME);
         Response response = createCourier(courierCreateData);
         assertTrue("Courier is not created!", response.getOk());
