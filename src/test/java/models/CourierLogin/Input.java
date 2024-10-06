@@ -24,4 +24,8 @@ public class Input {
         this.login = login;
         this.password = password;
     }
+
+    public Input(){
+
+    }
 }

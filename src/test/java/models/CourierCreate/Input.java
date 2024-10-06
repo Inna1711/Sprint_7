@@ -35,5 +35,8 @@ public class Input {
         this.firstName = firstName;
     }
 
+    public Input(){
+    }
+
 
 }
