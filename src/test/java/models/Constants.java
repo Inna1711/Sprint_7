@@ -11,4 +11,14 @@ public class Constants {
     public static final String NOT_ENOUGH_DATA_FOR_LOGIN_ERROR = "Недостаточно данных для входа";
     public static final String NOT_FOUND_LOGIN_ERROR = "Учетная запись не найдена";
 
+    public static final String ORDER_FIRST_NAME = "Naruto";
+    public static final String ORDER_LAST_NAME = "Uchiha";
+    public static final String ORDER_ADDRESS = "Konoha, 142 apt.";
+    public static final String ORDER_METRO_STATION = "4";
+    public static final String ORDER_PHONE = "+7 800 355 35 35";
+    public static final String ORDER_RENT_TIME = "5";
+    public static final String ORDER_DELIVERY_DATE = "5";
+    public static final String ORDER_COMMENT = "5";
+    public static final String ORDER_GREY_COLOR = "GREY";
+    public static final String ORDER_BLACK_COLOR = "BLACK";
 }

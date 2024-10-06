@@ -1,5 +1,7 @@
 package models.OrderCreate;
 
+import models.Constants;
+
 public class Input {
     private String firstName;
     private String lastName;
@@ -80,6 +82,18 @@ public class Input {
     }
 
     public void setColor(String[] color) {
+        this.color = color;
+    }
+
+    public Input(String[] color){
+        this.firstName = Constants.ORDER_FIRST_NAME;
+        this.lastName = Constants.ORDER_LAST_NAME;
+        this.address = Constants.ORDER_ADDRESS;
+        this.metroStation = Constants.ORDER_METRO_STATION;
+        this.phone = Constants.ORDER_PHONE;
+        this.rentTime = Constants.ORDER_RENT_TIME;
+        this.deliveryDate = Constants.ORDER_DELIVERY_DATE;
+        this.comment = Constants.ORDER_COMMENT;
         this.color = color;
     }
 }
