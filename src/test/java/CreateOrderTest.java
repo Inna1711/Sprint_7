@@ -51,7 +51,7 @@ public class CreateOrderTest {
     }
 
     @Test
-    @DisplayName("create an correct order")
+    @DisplayName("create a correct order")
     public void testOrdersCreation(){
         Input inputData = new Input(colors);
         models.OrderCreate.Output response = given().
