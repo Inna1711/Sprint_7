@@ -1,60 +1,47 @@
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import models.Constants;
 import models.CourierCreate.Input;
 import models.CourierCreate.Response;
 import org.apache.http.HttpStatus;
 import org.hamcrest.MatcherAssert;
 import org.junit.After;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static io.restassured.RestAssured.given;
+import static fixtures.CourierHandler.*;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.*;
+import static utils.Initializer.Initialize;
 
 public class CourierCreateTest
 {
-    @Before
-    public void setUp() {
-        RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru";
+    @BeforeClass
+    public static void setUp() {
+        Initialize();
     }
 
     @Step("Send a login request as courier")
     private int getCourierId(models.CourierLogin.Input courierLoginData){
-        models.CourierLogin.Response response = given().
-                header("Content-type", "application/json").
-                body(courierLoginData).
-                post("/api/v1/courier/login").body().as(models.CourierLogin.Response.class);
+        models.CourierLogin.Response response = loginCourier(courierLoginData);
 
         return response.getId();
     }
 
     @Step("Send a create request for Courier")
     private Response createCourier(Input courierData, int statusCode){
-        Response response = given().
-                header("Content-type", "application/json").
-                body(courierData).
-                post("/api/v1/courier").then().assertThat().statusCode(statusCode).extract().as(Response.class);
+        io.restassured.response.Response apiResponse = createCourierHandler(courierData);
+        Response response = apiResponse.then().assertThat().statusCode(statusCode).extract().as(Response.class);
         MatcherAssert.assertThat(response, notNullValue());
         return response;
     }
 
     @Step("Send a delete request for Courier")
-    private models.CourierDelete.Response deleteCourier(int courierId){
-        models.CourierDelete.Response response = given().
-                header("Content-type", "application/json").
-                delete("/api/v1/courier/" + courierId).body().as(models.CourierDelete.Response.class);
-        MatcherAssert.assertThat(response, notNullValue());
-        return response;
-    }
-
-    @Step
     private void cleanupCourier(String login, String password){
         var courierId = getCourierId(new models.CourierLogin.Input(login, password));
-        deleteCourier(courierId);
+        var response = deleteCourierHandler(courierId);
+        MatcherAssert.assertThat(response, notNullValue());
     }
 
     @Test

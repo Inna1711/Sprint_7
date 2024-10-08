@@ -21,4 +21,10 @@ public class Constants {
     public static final String ORDER_COMMENT = "5";
     public static final String ORDER_GREY_COLOR = "GREY";
     public static final String ORDER_BLACK_COLOR = "BLACK";
+
+    public static final String BASE_URL = "https://qa-scooter.praktikum-services.ru";
+
+    public static final String COURIER_ROUTE = "api/v1/courier/";
+    public static final String LOGIN_ROUTE = "/api/v1/courier/login";
+    public static final String ORDERS_ROUTE = "/api/v1/orders";
 }
