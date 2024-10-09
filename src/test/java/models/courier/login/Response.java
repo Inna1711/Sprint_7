@@ -1,4 +1,4 @@
-package models.CourierLogin;
+package models.courier.login;
 
 public class Response {
     private int id;

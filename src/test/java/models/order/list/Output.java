@@ -1,6 +1,6 @@
-package models.OrderList;
+package models.order.list;
 
-import models.OrderCreate.Input;
+import models.order.create.Input;
 
 public class Output {
     private Input[] orders;

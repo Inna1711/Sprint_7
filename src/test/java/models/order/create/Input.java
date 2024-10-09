@@ -1,4 +1,4 @@
-package models.OrderCreate;
+package models.order.create;
 
 import models.Constants;
 

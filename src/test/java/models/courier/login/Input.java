@@ -1,4 +1,4 @@
-package models.CourierLogin;
+package models.courier.login;
 
 public class Input {
     private String login;

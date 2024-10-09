@@ -1,7 +1,8 @@
 package fixtures;
 
 import models.Constants;
-import models.CourierCreate.Input;
+import models.courier.create.Input;
+import models.courier.delete.Response;
 
 import static io.restassured.RestAssured.given;
 
@@ -13,25 +14,25 @@ public class CourierHandler {
                 post(Constants.COURIER_ROUTE);
     }
 
-    public static models.CourierLogin.Response loginCourier(models.CourierLogin.Input courierLoginData){
+    public static models.courier.login.Response loginCourier(models.courier.login.Input courierLoginData){
         return given().
                 header("Content-type", "application/json").
                 body(courierLoginData).
-                post(Constants.LOGIN_ROUTE).body().as(models.CourierLogin.Response.class);
+                post(Constants.LOGIN_ROUTE).body().as(models.courier.login.Response.class);
     }
 
-    public static models.CourierLogin.Response loginCourier(models.CourierLogin.Input courierLoginData, int statusCode){
+    public static models.courier.login.Response loginCourier(models.courier.login.Input courierLoginData, int statusCode){
         return given().
                 header("Content-type", "application/json").
                 body(courierLoginData).
                 post(Constants.LOGIN_ROUTE)
                 .then().assertThat().statusCode(statusCode)
-                .extract().as(models.CourierLogin.Response.class);
+                .extract().as(models.courier.login.Response.class);
     }
 
-    public static models.CourierDelete.Response deleteCourierHandler(int courierId){
+    public static Response deleteCourierHandler(int courierId){
         return given().
                 header("Content-type", "application/json").
-                delete(Constants.COURIER_ROUTE + courierId).body().as(models.CourierDelete.Response.class);
+                delete(Constants.COURIER_ROUTE + courierId).body().as(Response.class);
     }
 }

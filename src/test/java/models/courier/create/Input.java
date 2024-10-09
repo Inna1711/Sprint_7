@@ -1,4 +1,4 @@
-package models.CourierCreate;
+package models.courier.create;
 
 public class Input {
     private String login;

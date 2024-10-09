@@ -1,4 +1,4 @@
-package models.CourierDelete;
+package models.courier.delete;
 
 public class Response {
     private boolean ok;

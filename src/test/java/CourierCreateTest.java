@@ -2,8 +2,8 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
 import models.Constants;
-import models.CourierCreate.Input;
-import models.CourierCreate.Response;
+import models.courier.create.Input;
+import models.courier.create.Response;
 import org.apache.http.HttpStatus;
 import org.hamcrest.MatcherAssert;
 import org.junit.After;
@@ -13,18 +13,18 @@ import org.junit.Test;
 import static fixtures.CourierHandler.*;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.*;
-import static utils.Initializer.Initialize;
+import static utils.Initializer.initialize;
 
 public class CourierCreateTest
 {
     @BeforeClass
     public static void setUp() {
-        Initialize();
+        initialize();
     }
 
     @Step("Send a login request as courier")
-    private int getCourierId(models.CourierLogin.Input courierLoginData){
-        models.CourierLogin.Response response = loginCourier(courierLoginData);
+    private int getCourierId(models.courier.login.Input courierLoginData){
+        models.courier.login.Response response = loginCourier(courierLoginData);
 
         return response.getId();
     }
@@ -39,7 +39,7 @@ public class CourierCreateTest
 
     @Step("Send a delete request for Courier")
     private void cleanupCourier(String login, String password){
-        var courierId = getCourierId(new models.CourierLogin.Input(login, password));
+        var courierId = getCourierId(new models.courier.login.Input(login, password));
         var response = deleteCourierHandler(courierId);
         MatcherAssert.assertThat(response, notNullValue());
     }
